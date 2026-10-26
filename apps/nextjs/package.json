@@ -30,6 +30,8 @@
     "@dnd-kit/react": "catalog:",
     "@dnd-kit/sortable": "catalog:",
     "@dnd-kit/utilities": "catalog:",
+    "@fontsource-variable/orbitron": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "@gfazioli/mantine-onboarding-tour": "catalog:",
     "@homarr/analytics": "workspace:^0.1.0",
     "@homarr/api": "workspace:^0.1.0",
