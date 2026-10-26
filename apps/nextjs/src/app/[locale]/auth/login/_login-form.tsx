@@ -71,7 +71,9 @@ export const LoginForm = ({ providers, oidcClientName, isOidcAutoLoginEnabled, c
 
       // Redirect to the callback URL if the response is defined and comes from a credentials provider (ldap or credentials). oidc is redirected automatically.
       await revalidatePathActionAsync("/");
-      router.push(sanitizeRedirectionUrl(callbackUrl));
+      // EARTHROPY: the callback can be another app behind the doorman (e.g. /drive/files/),
+      // which the dashboard router cannot render, so load the page normally.
+      window.location.assign(sanitizeRedirectionUrl(callbackUrl));
     },
     [t, router, callbackUrl],
   );
