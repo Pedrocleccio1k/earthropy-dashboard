@@ -12,6 +12,7 @@ import { sanitizeRedirectionUrl } from "@homarr/validation/redirection-url";
 
 import { env as appEnv } from "~/env";
 
+import { EarthropyLoginHero } from "./_earthropy-hero";
 import { LoginForm } from "./_login-form";
 
 interface LoginProps {
@@ -51,6 +52,7 @@ export default async function Login(props: LoginProps) {
       backgroundImageUrl={branding.signInBackgroundImageUrl ?? undefined}
       backgroundOverlay={branding.signInBackgroundOverlay}
       radius={branding.defaultRadius}
+      hero={branding.logoImageUrl ? undefined : <EarthropyLoginHero appName={branding.appName} />}
     >
       {appEnv.DEMO_MODE ? (
         <Alert icon={<IconLogin size={18} />} color="blue" variant="light">

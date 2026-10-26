@@ -4,7 +4,7 @@ import { useSettings } from "@homarr/settings";
 
 import type { LogoWithTitleProps } from "./logo";
 import { Logo, LogoWithTitle } from "./logo";
-import { homarrLogoPath } from "./constants";
+import { earthropyWordmarkPath, homarrLogoPath } from "./constants";
 
 interface LogoProps {
   size: number;
@@ -15,6 +15,7 @@ const useBrandLogo = () => {
   const configuredLogoUrl = branding.logoImageUrl?.trim();
   return {
     title: branding.appName,
+    wordmarkSrc: configuredLogoUrl ? undefined : earthropyWordmarkPath,
     image: {
       src: configuredLogoUrl || homarrLogoPath,
       alt: `${branding.appName} logo`,
@@ -35,5 +36,13 @@ interface CommonLogoWithTitleProps {
 
 export const HomarrLogoWithTitle = ({ size, hideTitleOnMobile }: CommonLogoWithTitleProps) => {
   const brand = useBrandLogo();
-  return <LogoWithTitle size={size} title={brand.title} image={brand.image} hideTitleOnMobile={hideTitleOnMobile} />;
+  return (
+    <LogoWithTitle
+      size={size}
+      title={brand.title}
+      image={brand.image}
+      hideTitleOnMobile={hideTitleOnMobile}
+      wordmarkSrc={brand.wordmarkSrc}
+    />
+  );
 };

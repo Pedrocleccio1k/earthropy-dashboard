@@ -15,11 +15,12 @@ export const theme = createTheme({
   respectReducedMotion: true,
   cursorType: "pointer",
 
-  fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+  // EARTHROPY: Space Grotesk is the interface font from the Figma design
+  fontFamily: "var(--font-sans), 'Space Grotesk', system-ui, -apple-system, sans-serif",
   fontFamilyMonospace: "ui-monospace, 'Cascadia Code', 'Fira Code', monospace",
 
   headings: {
-    fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+    fontFamily: "var(--font-sans), 'Space Grotesk', system-ui, -apple-system, sans-serif",
     fontWeight: "600",
     sizes: {
       h1: { fontSize: rem(36), lineHeight: "1.1", fontWeight: "700" },
@@ -52,8 +53,8 @@ export const theme = createTheme({
     xs: rem(4),
     sm: rem(4),
     md: rem(8),
-    lg: rem(12),
-    xl: rem(16),
+    lg: rem(16),
+    xl: rem(22),
   },
   defaultRadius: "md",
 

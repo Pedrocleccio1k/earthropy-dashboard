@@ -3,6 +3,7 @@
 @import "@mantine/dates/styles.css";
 @import "@gfazioli/mantine-onboarding-tour/styles.css";
 @import "mantine-react-table/styles.css";
+@import "./earthropy.css";
 
 :root {
   --homarr-z-index-widget-background-tooltip: calc(var(--mantine-z-index-modal) - 4);

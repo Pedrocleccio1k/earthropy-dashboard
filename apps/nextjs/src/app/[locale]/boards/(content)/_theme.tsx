@@ -28,6 +28,11 @@ export const BoardMantineProvider = ({
     primaryColor: "primaryColor",
     autoContrast: true,
     defaultRadius: branding.defaultRadius,
+    // EARTHROPY: widget cards use 22px corners (board item radius "lg" by default)
+    radius: {
+      lg: rem(22),
+      xl: rem(28),
+    },
     fontSizes: {
       "2xl": rem(24),
       "3xl": rem(28),

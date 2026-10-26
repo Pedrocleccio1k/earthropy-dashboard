@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Orbitron, Space_Grotesk } from "next/font/google";
 
 import "@gfazioli/mantine-onboarding-tour/styles.css";
 import "@homarr/notifications/styles.css";
@@ -46,9 +46,15 @@ import { AuthProvider } from "./_client-providers/session";
 import { TRPCReactProvider } from "./_client-providers/trpc";
 import { composeWrappers } from "./compose";
 
-const fontSans = Inter({
+// EARTHROPY fonts (Figma): Space Grotesk for the interface, Orbitron for app icon letters
+const fontSans = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const fontDisplay = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-display",
 });
 
 const logger = createLogger({ module: "rootLayout" });
@@ -202,7 +208,7 @@ export default async function Layout(props: {
         <CrowdinLiveTranslation locale={locale} />
         <style data-homarr-global-custom-css>{serverSettings.branding.customCss}</style>
       </head>
-      <body className={[fontSans.className, fontSans.variable].join(" ")} suppressHydrationWarning>
+      <body className={[fontSans.className, fontSans.variable, fontDisplay.variable].join(" ")} suppressHydrationWarning>
         <ViewportHint />
         <StackedProvider>
           <Notifications pauseResetOnHover="notification" />

@@ -33,10 +33,17 @@ export interface LogoWithTitleProps {
   title: string;
   image: Omit<LogoProps, "size">;
   hideTitleOnMobile?: boolean;
+  /** EARTHROPY: when set, the wordmark image replaces logo + title */
+  wordmarkSrc?: string;
 }
 
-export const LogoWithTitle = ({ size, title, image, hideTitleOnMobile }: LogoWithTitleProps) => {
+export const LogoWithTitle = ({ size, title, image, hideTitleOnMobile, wordmarkSrc }: LogoWithTitleProps) => {
   const { logoSize, titleOrder } = logoWithTitleSizes[size];
+
+  if (wordmarkSrc) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img className="earthropy-wordmark" src={wordmarkSrc} alt={title} />;
+  }
 
   return (
     <Group gap="xs" wrap="nowrap">

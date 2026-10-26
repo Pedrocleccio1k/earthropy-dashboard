@@ -57,12 +57,12 @@ export const brandingServerSettingsSchema = z.object({
 export type BrandingSettings = z.infer<typeof brandingServerSettingsSchema>;
 
 export const defaultBrandingSettings: BrandingSettings = {
-  appName: "Homarr",
+  appName: "EARTHROPY",
   greeting: "",
   logoImageUrl: null,
   faviconImageUrl: null,
-  primaryColor: "#fa5252",
-  secondaryColor: "#fd7e14",
+  primaryColor: "#4f7cff",
+  secondaryColor: "#b14cff",
   lockPrimaryColor: false,
   signInBackgroundImageUrl: null,
   signInBackgroundOverlay: 0.55,
@@ -146,7 +146,7 @@ export const defaultServerSettings = {
     enableGravatar: true,
   },
   appearance: {
-    defaultColorScheme: "auto" as ColorScheme,
+    defaultColorScheme: "light" as ColorScheme,
   },
   branding: defaultBrandingSettings,
   culture: {

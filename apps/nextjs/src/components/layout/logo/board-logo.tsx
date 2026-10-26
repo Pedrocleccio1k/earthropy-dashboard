@@ -3,7 +3,7 @@
 import { useRequiredBoard } from "@homarr/boards/context";
 import { useSettings } from "@homarr/settings";
 
-import { homarrLogoPath } from "./constants";
+import { earthropyWordmarkPath, homarrLogoPath } from "./constants";
 import type { LogoWithTitleProps } from "./logo";
 import { Logo, LogoWithTitle } from "./logo";
 
@@ -35,8 +35,10 @@ export const BoardLogoWithTitle = ({ size, hideTitleOnMobile }: CommonLogoWithTi
   const board = useRequiredBoard();
   const { branding } = useSettings();
   const imageOptions = useImageOptions();
+  const hasCustomBrand = Boolean(board.logoImageUrl?.trim() || branding.logoImageUrl?.trim() || board.pageTitle);
   return (
     <LogoWithTitle
+      wordmarkSrc={hasCustomBrand ? undefined : earthropyWordmarkPath}
       size={size}
       hideTitleOnMobile={hideTitleOnMobile}
       title={board.pageTitle ?? branding.appName}

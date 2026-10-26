@@ -1,0 +1,257 @@
+/*
+ * EARTHROPY skin
+ * Visual layer on top of Homarr, taken from the EARTHROPY Figma file
+ * (pages "Login" and "Dashboard"). Kept in one file on purpose so the
+ * original Homarr components stay untouched and upstream updates merge cleanly.
+ */
+
+:root {
+  --earthropy-ink: #0b1b3f;
+  --earthropy-ink-80: rgb(11 27 63 / 0.8);
+  --earthropy-ink-60: rgb(11 27 63 / 0.6);
+  --earthropy-ink-50: rgb(11 27 63 / 0.5);
+  --earthropy-ink-14: rgb(11 27 63 / 0.14);
+  --earthropy-accent-from: #4f7cff;
+  --earthropy-accent-to: #b14cff;
+  --earthropy-accent-gradient: linear-gradient(90deg, var(--earthropy-accent-from), var(--earthropy-accent-to));
+  --earthropy-glass: rgb(255 255 255 / 0.55);
+  --earthropy-glass-border: rgb(255 255 255 / 0.8);
+  --earthropy-glass-blur: 15px;
+  --earthropy-card-shadow: 0 12px 32px rgb(13 38 102 / 0.1);
+  --earthropy-sky:
+    radial-gradient(60rem 30rem at 85% 8%, rgb(120 170 255 / 0.35), transparent 70%),
+    radial-gradient(50rem 28rem at 10% 45%, rgb(150 190 255 / 0.3), transparent 70%),
+    radial-gradient(60rem 30rem at 70% 85%, rgb(170 200 255 / 0.35), transparent 70%),
+    linear-gradient(180deg, #eef5ff 0%, #dceaff 45%, #e8f1ff 100%);
+}
+
+/* ---------- Light scheme: ink colors and sky background ---------- */
+:root[data-mantine-color-scheme="light"] {
+  --mantine-color-text: var(--earthropy-ink);
+  --mantine-color-dimmed: var(--earthropy-ink-60);
+  --mantine-color-placeholder: var(--earthropy-ink-50);
+  --mantine-color-default-border: rgb(11 27 63 / 0.1);
+}
+
+:root[data-mantine-color-scheme="light"] body {
+  background: var(--earthropy-sky) fixed;
+  color: var(--earthropy-ink);
+}
+
+/* The app shell paints its own white body; let the sky show through */
+:root[data-mantine-color-scheme="light"] .mantine-AppShell-main {
+  background: transparent;
+}
+
+/* ---------- Header (Figma "Top Bar") ---------- */
+:root[data-mantine-color-scheme="light"] .mantine-AppShell-header {
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: blur(12px);
+}
+
+:root[data-mantine-color-scheme="light"] .mantine-AppShell-navbar {
+  background: var(--earthropy-glass);
+  border-color: var(--earthropy-glass-border);
+  backdrop-filter: blur(var(--earthropy-glass-blur));
+}
+
+/* Search pill */
+.mantine-AppShell-header .mantine-Input-input {
+  border-radius: 999px;
+  background: var(--earthropy-glass);
+  border: 1px solid var(--earthropy-glass-border);
+  box-shadow: var(--earthropy-card-shadow);
+  backdrop-filter: blur(var(--earthropy-glass-blur));
+  color: var(--earthropy-ink-50);
+}
+
+/* Round glass action buttons (customize, notifications, avatar) */
+.mantine-AppShell-header .mantine-ActionIcon-root {
+  border-radius: 999px;
+}
+
+:root[data-mantine-color-scheme="light"] .mantine-AppShell-header .mantine-ActionIcon-root[data-variant="default"],
+:root[data-mantine-color-scheme="light"] .mantine-AppShell-header .mantine-ActionIcon-root[data-variant="subtle"] {
+  background: var(--earthropy-glass);
+  border: 1px solid var(--earthropy-glass-border);
+  box-shadow: var(--earthropy-card-shadow);
+  color: var(--earthropy-ink-80);
+}
+
+/* EARTHROPY wordmark in the header */
+.earthropy-wordmark {
+  display: block;
+  height: 36.6px;
+  width: auto;
+}
+
+/* ---------- Widget cards (Figma "Widget / …") ---------- */
+.board-grid-item-content {
+  color: var(--earthropy-ink);
+}
+
+/* Section titles on boards */
+:root[data-mantine-color-scheme="light"] .board-grid-item-content .mantine-Title-root {
+  color: var(--earthropy-ink);
+}
+
+/* ---------- App tiles (Figma "App Launcher") ---------- */
+.app-flex-wrapper .app-title {
+  font-weight: 500;
+  font-size: 12px;
+  color: rgb(11 27 63 / 0.85);
+}
+
+.app-flex-wrapper .app-icon {
+  border-radius: 18px;
+}
+
+/* ---------- Primary buttons use the accent gradient ---------- */
+:root[data-mantine-color-scheme="light"] .mantine-Button-root[data-variant="filled"]:not([data-disabled]) {
+  background: var(--earthropy-accent-gradient);
+  border: none;
+  box-shadow: 0 8px 18px rgb(79 124 255 / 0.35);
+}
+
+/* ---------- Generic glass surfaces (menus, popovers, modals, papers) ---------- */
+:root[data-mantine-color-scheme="light"] .mantine-Menu-dropdown,
+:root[data-mantine-color-scheme="light"] .mantine-Popover-dropdown,
+:root[data-mantine-color-scheme="light"] .mantine-Spotlight-content {
+  background: rgb(255 255 255 / 0.8);
+  border-color: var(--earthropy-glass-border);
+  backdrop-filter: blur(var(--earthropy-glass-blur));
+  box-shadow: var(--earthropy-card-shadow);
+}
+
+/* Small uppercase labels like "SYSTEM", "PASSWORD" */
+.earthropy-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--earthropy-ink-50);
+}
+
+/* ---------- Login (Figma page "Login") ---------- */
+[data-earthropy-hero] {
+  grid-template-columns: minmax(0, 1fr) min(35rem, 100%);
+  align-items: center;
+  column-gap: clamp(1rem, 4vw, 4rem);
+  padding-inline: clamp(1rem, 5vw, 6rem) clamp(1rem, 8vw, 10rem);
+  position: relative;
+  z-index: 1;
+}
+
+[data-earthropy-hero] > :last-child {
+  width: 100%;
+}
+
+.earthropy-auth-hero {
+  min-width: 0;
+}
+
+.earthropy-auth-wordmark {
+  position: absolute;
+  top: 28px;
+  left: 27px;
+  width: min(684px, 47vw);
+  height: auto;
+}
+
+.earthropy-auth-visual {
+  position: relative;
+  min-height: 26rem;
+}
+
+.earthropy-auth-globe {
+  width: min(380px, 28vw);
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgb(27 107 255 / 0.25));
+}
+
+.earthropy-auth-tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: -2rem 0 0;
+  padding-right: 1rem;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.15;
+  color: rgb(11 27 63 / 0.55);
+}
+
+.earthropy-auth-footer {
+  position: fixed;
+  left: 26px;
+  bottom: 22px;
+  margin: 0;
+  font-size: 11px;
+  color: var(--earthropy-ink-60);
+}
+
+/* Login card: glass, centered title like Figma "Welcome back" */
+[data-earthropy-hero] .mantine-Paper-root {
+  background: rgb(255 255 255 / 0.45);
+  border: 1px solid var(--earthropy-glass-border);
+  border-radius: 22px;
+  backdrop-filter: blur(24px);
+  box-shadow: var(--earthropy-card-shadow);
+}
+
+[data-earthropy-hero] .mantine-Paper-root .mantine-ThemeIcon-root {
+  display: none;
+}
+
+[data-earthropy-hero] .mantine-Paper-root .mantine-Title-root {
+  font-size: 22px;
+  color: var(--earthropy-ink);
+}
+
+[data-earthropy-hero] .mantine-InputWrapper-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--earthropy-ink-60);
+}
+
+[data-earthropy-hero] .mantine-Input-input {
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.6);
+  border: 1px solid var(--earthropy-glass-border);
+}
+
+@media (max-width: 62em) {
+  [data-earthropy-hero] {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 7rem;
+  }
+
+  .earthropy-auth-visual {
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .earthropy-auth-globe {
+    width: 9rem;
+  }
+
+  .earthropy-auth-tagline,
+  .earthropy-auth-footer {
+    display: none;
+  }
+
+  .earthropy-auth-wordmark {
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(20rem, 80vw);
+  }
+}
+
+/* Login page background: same sky as the dashboard */
+main:has(> [data-earthropy-hero]),
+main:has([data-earthropy-hero]) {
+  background: var(--earthropy-sky);
+}
