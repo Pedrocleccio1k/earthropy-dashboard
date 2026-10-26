@@ -3,24 +3,36 @@
  * Visual layer on top of Homarr, taken from the EARTHROPY Figma file
  * (pages "Login" and "Dashboard"). Kept in one file on purpose so the
  * original Homarr components stay untouched and upstream updates merge cleanly.
+ *
+ * Every color goes through the --earthropy-* tokens below. The light values come
+ * from Figma; the dark values are the same design at night (white text, dark glass).
  */
 
 :root {
   /* fonts come from @fontsource-variable packages imported in the root layout */
   --font-sans: "Space Grotesk Variable", "Space Grotesk";
   --font-display: "Orbitron Variable", "Orbitron";
+  --earthropy-accent-from: #4f7cff;
+  --earthropy-accent-to: #b14cff;
+  --earthropy-accent-gradient: linear-gradient(90deg, var(--earthropy-accent-from), var(--earthropy-accent-to));
+  --earthropy-glass-blur: 15px;
+}
+
+/* ---------- Light tokens (Figma) ---------- */
+:root,
+:root[data-mantine-color-scheme="light"] {
   --earthropy-ink: #0b1b3f;
   --earthropy-ink-80: rgb(11 27 63 / 0.8);
   --earthropy-ink-60: rgb(11 27 63 / 0.6);
   --earthropy-ink-50: rgb(11 27 63 / 0.5);
   --earthropy-ink-14: rgb(11 27 63 / 0.14);
-  --earthropy-accent-from: #4f7cff;
-  --earthropy-accent-to: #b14cff;
-  --earthropy-accent-gradient: linear-gradient(90deg, var(--earthropy-accent-from), var(--earthropy-accent-to));
+  --earthropy-tagline: rgb(11 27 63 / 0.55);
   --earthropy-glass: rgb(255 255 255 / 0.55);
+  --earthropy-glass-strong: rgb(255 255 255 / 0.8);
   --earthropy-glass-border: rgb(255 255 255 / 0.8);
-  --earthropy-glass-blur: 15px;
+  --earthropy-input: rgb(255 255 255 / 0.6);
   --earthropy-card-shadow: 0 12px 32px rgb(13 38 102 / 0.1);
+  --earthropy-wordmark-filter: none;
   --earthropy-sky:
     radial-gradient(60rem 30rem at 85% 8%, rgb(120 170 255 / 0.35), transparent 70%),
     radial-gradient(50rem 28rem at 10% 45%, rgb(150 190 255 / 0.3), transparent 70%),
@@ -28,36 +40,54 @@
     linear-gradient(180deg, #eef5ff 0%, #dceaff 45%, #e8f1ff 100%);
 }
 
-/* ---------- Light scheme: ink colors and sky background ---------- */
-:root[data-mantine-color-scheme="light"] {
+/* ---------- Dark tokens ---------- */
+:root[data-mantine-color-scheme="dark"] {
+  --earthropy-ink: #eef3ff;
+  --earthropy-ink-80: rgb(238 243 255 / 0.85);
+  --earthropy-ink-60: rgb(238 243 255 / 0.66);
+  --earthropy-ink-50: rgb(238 243 255 / 0.55);
+  --earthropy-ink-14: rgb(238 243 255 / 0.16);
+  --earthropy-tagline: rgb(238 243 255 / 0.6);
+  --earthropy-glass: rgb(255 255 255 / 0.06);
+  --earthropy-glass-strong: rgb(18 26 52 / 0.92);
+  --earthropy-glass-border: rgb(255 255 255 / 0.12);
+  --earthropy-input: rgb(255 255 255 / 0.08);
+  --earthropy-card-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+  --earthropy-wordmark-filter: brightness(0) invert(0.95);
+  --earthropy-sky:
+    radial-gradient(60rem 30rem at 85% 8%, rgb(79 124 255 / 0.22), transparent 70%),
+    radial-gradient(50rem 28rem at 10% 45%, rgb(177 76 255 / 0.14), transparent 70%),
+    radial-gradient(60rem 30rem at 70% 85%, rgb(25 211 197 / 0.1), transparent 70%),
+    linear-gradient(180deg, #070c1d 0%, #0b1433 50%, #080e22 100%);
+}
+
+/* ---------- Mantine colors follow the tokens ---------- */
+:root[data-mantine-color-scheme] {
   --mantine-color-text: var(--earthropy-ink);
   --mantine-color-dimmed: var(--earthropy-ink-60);
   --mantine-color-placeholder: var(--earthropy-ink-50);
-  --mantine-color-default-border: rgb(11 27 63 / 0.1);
-}
-
-:root[data-mantine-color-scheme="light"] {
+  --mantine-color-default-border: var(--earthropy-ink-14);
   background-image: var(--earthropy-sky);
 }
 
-:root[data-mantine-color-scheme="light"] body {
+:root[data-mantine-color-scheme] body {
   background: transparent;
   color: var(--earthropy-ink);
 }
 
-/* The app shell paints its own white body; let the sky show through */
-:root[data-mantine-color-scheme="light"] .mantine-AppShell-main {
+/* The app shell paints its own body; let the sky show through */
+.mantine-AppShell-main {
   background: transparent;
 }
 
 /* ---------- Header (Figma "Top Bar") ---------- */
-:root[data-mantine-color-scheme="light"] .mantine-AppShell-header {
+.mantine-AppShell-header {
   background: transparent;
   border-bottom: none;
   backdrop-filter: blur(12px);
 }
 
-:root[data-mantine-color-scheme="light"] .mantine-AppShell-navbar {
+.mantine-AppShell-navbar {
   background: var(--earthropy-glass);
   border-color: var(--earthropy-glass-border);
   backdrop-filter: blur(var(--earthropy-glass-blur));
@@ -78,15 +108,20 @@
   border-radius: 999px;
 }
 
-:root[data-mantine-color-scheme="light"] .mantine-AppShell-header .mantine-ActionIcon-root[data-variant="default"],
-:root[data-mantine-color-scheme="light"] .mantine-AppShell-header .mantine-ActionIcon-root[data-variant="subtle"] {
+.mantine-AppShell-header .mantine-ActionIcon-root[data-variant="default"],
+.mantine-AppShell-header .mantine-ActionIcon-root[data-variant="subtle"] {
   background: var(--earthropy-glass);
   border: 1px solid var(--earthropy-glass-border);
   box-shadow: var(--earthropy-card-shadow);
   color: var(--earthropy-ink-80);
 }
 
-/* EARTHROPY wordmark in the header */
+/* EARTHROPY wordmark in the header (dark navy art, turned light at night) */
+.earthropy-wordmark,
+.earthropy-auth-wordmark {
+  filter: var(--earthropy-wordmark-filter);
+}
+
 .earthropy-wordmark {
   display: block;
   height: 36.6px;
@@ -98,34 +133,107 @@
   color: var(--earthropy-ink);
 }
 
-/* Section titles on boards */
-:root[data-mantine-color-scheme="light"] .board-grid-item-content .mantine-Title-root {
+.board-grid-item-content .mantine-Title-root {
   color: var(--earthropy-ink);
 }
 
-/* ---------- App tiles (Figma "App Launcher") ---------- */
+/* ---------- App tiles placed as widgets ---------- */
 .app-flex-wrapper .app-title {
   font-weight: 500;
   font-size: 12px;
-  color: rgb(11 27 63 / 0.85);
+  color: var(--earthropy-ink-80);
 }
 
 .app-flex-wrapper .app-icon {
   border-radius: 18px;
 }
 
+/* ---------- Permanent app bar (Figma "App Launcher") ---------- */
+.earthropy-app-bar {
+  display: flex;
+  margin: 4px 0 18px;
+  padding-inline: var(--mantine-spacing-xs);
+}
+
+.earthropy-app-bar-track {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 100%;
+  padding: 14px 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-radius: 28px;
+  background: var(--earthropy-glass);
+  border: 1px solid var(--earthropy-glass-border);
+  box-shadow: var(--earthropy-card-shadow);
+  backdrop-filter: blur(var(--earthropy-glass-blur));
+}
+
+.earthropy-app-bar-track::-webkit-scrollbar {
+  display: none;
+}
+
+.earthropy-app {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 72px;
+  padding: 8px 0;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: transform 120ms ease, background-color 120ms ease;
+}
+
+.earthropy-app[data-installed="true"]:hover {
+  background: var(--earthropy-ink-14);
+  transform: translateY(-2px);
+}
+
+.earthropy-app[data-installed="true"]:focus-visible {
+  outline: 2px solid var(--earthropy-accent-from);
+  outline-offset: 2px;
+}
+
+.earthropy-app[data-installed="false"] {
+  cursor: default;
+  opacity: 0.42;
+  filter: saturate(0.6);
+}
+
+.earthropy-app-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.earthropy-app-name {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--earthropy-ink-80);
+}
+
 /* ---------- Primary buttons use the accent gradient ---------- */
-:root[data-mantine-color-scheme="light"] .mantine-Button-root[data-variant="filled"]:not([data-disabled]) {
+.mantine-Button-root[data-variant="filled"]:not([data-disabled]) {
   background: var(--earthropy-accent-gradient);
   border: none;
   box-shadow: 0 8px 18px rgb(79 124 255 / 0.35);
 }
 
-/* ---------- Generic glass surfaces (menus, popovers, modals, papers) ---------- */
-:root[data-mantine-color-scheme="light"] .mantine-Menu-dropdown,
-:root[data-mantine-color-scheme="light"] .mantine-Popover-dropdown,
-:root[data-mantine-color-scheme="light"] .mantine-Spotlight-content {
-  background: rgb(255 255 255 / 0.8);
+/* ---------- Generic glass surfaces (menus, popovers, spotlight) ---------- */
+.mantine-Menu-dropdown,
+.mantine-Popover-dropdown,
+.mantine-Spotlight-content {
+  background: var(--earthropy-glass-strong);
   border-color: var(--earthropy-glass-border);
   backdrop-filter: blur(var(--earthropy-glass-blur));
   box-shadow: var(--earthropy-card-shadow);
@@ -186,7 +294,7 @@
   padding-right: 1rem;
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.15;
-  color: rgb(11 27 63 / 0.55);
+  color: var(--earthropy-tagline);
 }
 
 .earthropy-auth-footer {
@@ -200,7 +308,7 @@
 
 /* Login card: glass, centered title like Figma "Welcome back" */
 [data-earthropy-hero] .mantine-Paper-root {
-  background: rgb(255 255 255 / 0.45);
+  background: var(--earthropy-glass);
   border: 1px solid var(--earthropy-glass-border);
   border-radius: 22px;
   backdrop-filter: blur(24px);
@@ -226,7 +334,7 @@
 
 [data-earthropy-hero] .mantine-Input-input {
   border-radius: 12px;
-  background: rgb(255 255 255 / 0.6);
+  background: var(--earthropy-input);
   border: 1px solid var(--earthropy-glass-border);
 }
 

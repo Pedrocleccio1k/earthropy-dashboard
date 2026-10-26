@@ -14,6 +14,7 @@ import { ModalProvider } from "@homarr/modals";
 
 import { MainHeader } from "~/components/layout/header";
 import { appShellLogoHeight } from "~/components/layout/constants";
+import { EarthropyAppBar } from "~/components/layout/earthropy-app-bar";
 import { BoardLogo, BoardLogoWithTitle } from "~/components/layout/logo/board-logo";
 import { ClientShell } from "~/components/layout/shell";
 import { BoardTourGate } from "~/components/onboarding/board-tour-gate";
@@ -120,7 +121,11 @@ export const createBoardLayout = <TParams extends Params>({
                     boardSettingsAction={headerBoardSettingsAction}
                     hasNavigation={false}
                   />
-                  <AppShellMain data-advanced-focus-background>{children}</AppShellMain>
+                  <AppShellMain data-advanced-focus-background>
+                    {/* EARTHROPY: permanent launcher for the suite apps */}
+                    <EarthropyAppBar />
+                    {children}
+                  </AppShellMain>
                 </ClientShell>
               </BoardTourGate>
             </ModalProvider>

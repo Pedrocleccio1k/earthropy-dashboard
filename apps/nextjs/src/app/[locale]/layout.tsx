@@ -183,7 +183,7 @@ export default async function Layout(props: {
       lang={locale}
       dir={direction}
       style={{
-        backgroundColor: colorScheme === "dark" ? "#242424" : colorScheme === "auto" ? undefined : "#fff",
+        backgroundColor: colorScheme === "dark" ? "#070c1d" : colorScheme === "auto" ? undefined : "#fff",
       }}
       suppressHydrationWarning
     >

@@ -1,7 +1,8 @@
 .card {
+  /* EARTHROPY dark glass card */
   @mixin dark {
-    --background-color: rgb(from var(--mantine-color-dark-6) r g b / var(--opacity));
-    --default-border-color: rgb(from var(--mantine-color-dark-4) r g b / var(--opacity));
+    --background-color: rgb(255 255 255 / calc(0.06 * var(--opacity)));
+    --default-border-color: rgb(255 255 255 / calc(0.12 * var(--opacity)));
   }
 
   /* EARTHROPY glass card (Figma: white 55%, white 80% border, 15px blur) */
